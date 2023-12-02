@@ -128,6 +128,7 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <iframe src="https://topics-demo.glitch.me/observe/index.html" />
     </main>
   )
 }
