@@ -1,6 +1,24 @@
+"use client";
+import { useEffect } from 'react'
 import Image from 'next/image'
-
 export default function Home() {
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      (async () => {
+        if ('browsingTopics' in document &&
+            //@ts-ignore
+            document.featurePolicy.allowsFeature('browsing-topics')) {
+          //@ts-ignore
+            const topics = await document.browsingTopics();
+            console.log(topics);
+            console.log('🦜 document.browsingTopics():\n✅ Supported by browser\n✅ Allowed by Permissions Policy');
+            console.log('Now calling await document.browsingTopics() ...');
+        }
+      })();
+    }, 10000)
+    return () => clearInterval(timerId)
+  }, [])
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
